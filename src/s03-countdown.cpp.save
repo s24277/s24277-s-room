@@ -1,0 +1,19 @@
+#include <iostream>
+
+int x;
+auto main(int argc, char *argv[]) -> int {
+  if (argc != 3) {
+std::cout << "Podaj Liczbe
+\n";
+    return 1;
+{
+
+std::getline(std::cin, x);
+while(x >= 0)
+{
+std::cout << x << "..\n"
+(x-1)
+}
+
+
+}

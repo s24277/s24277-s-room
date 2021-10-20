@@ -1,7 +1,3 @@
-/*
- * Ask the user for their credentials. Allow them to decline.
- */
-
 #include <iostream>
 #include <string>
 
