@@ -13,6 +13,8 @@ while(x != strzal)
 {
 std::cout << "Choose your number (1 - 100)\n";
 std::cin >> strzal;
+if(strzal == 69)
+std::cout << "NICE\n";
 if(strzal > x)
 std::cout << "too big!\n";
 else if(strzal < x)
