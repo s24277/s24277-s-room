@@ -1,58 +1,60 @@
 #include <iostream>
 #include <string>
-#include <algorithm>
-
 
 auto main(int argc, char *argv[]) -> int 
 {
-auto args = std::vector<std::string>{};
-std::copy_n(argv,argc,std::back_inserter(args));
-
-// jezeli litera to zrob to
-if(argv[1] == "-r" && argv[2] == "-l" || argv[1] == "-l" && argv[2] == "-r"))
+if(argc == 0 )
 {
-std::reverse (vec.begin(), vec.end());
-
-for (auto const& each :args)
-{std::cout << each << "\n";
-
+return 0;
 }
-else if(argv[1] == "-r" && argv[2] == "-n" || argv[1] == "-n" && argv[2] == "-r"))
+if ((argv[1] == std::string("-r") && argv[2] == std::string("-l")) || (argv[1] == std::string("-l") && argv[2] == std::string("-r"))  )
 {
-std::reverse (vec.begin(), vec.end());
-
-for (auto const& each :args)
-{std::cout << each ;
-
+for (auto i=argc - 1; i>2; i--)
+{
+std::cout << argv[i] << " \n";
 }
-else if(argv[1] == "-n")
-{
-for (auto const& each :args)
-std::cout << each ;
-}
-else if(argv[1] == "-r")
-{
-std::reverse (vec.begin(), vec.end());
-
-for (auto const& each :args)
-{std::cout << each <<;
-
-}
-else if(argv[1] == "-l")
-{
-for (auto const& each :args)
-{std::cout << each << "\n";
-
-}
-else 
-{
-for (auto const& each :args)
-{std::cout << each << "\n";
-
 }
 
+else if ((argv[1] == std::string("-r") && argv[2] == std::string("-n")) || (argv[1] == std::string("-n") && argv[2] == std::string("-r"))  )
+{
+for (auto i=argc - 1; i>2; i--)
+{
+std::cout << argv[i] << " ";
+}
+}
 
+else if (argv[1] == std::string("-n") )
+{
+for (auto i=2; i<argc; i++)
+{
+std::cout << argv[i] << " ";
+}
+}
 
+else if (argv[1] == std::string("-r") )
+{
+for (auto i=argc - 1; i>1; i--)
+{
+std::cout << argv[i] << " ";
+}
+std::cout << "\n";
+}
 
+else if (argv[1] == std::string("-l") )
+{
+for (auto i=2; i<argc; i++)
+{
+std::cout << argv[i] << " \n";
+}
+}
+
+else
+{
+for (auto i=1; i<argc; i++)
+{
+std::cout << argv[i] << " ";
+}
+std::cout << "\n";
+}
 return 0;
 }

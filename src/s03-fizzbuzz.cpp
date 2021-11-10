@@ -9,11 +9,11 @@ std::cin >> liczba;
 for(int i=1; i<=liczba; i++ )
 {
 if((i % 15) ==0)
-std::cout << i << "FizzBuzz\n";
+std::cout << i << " FizzBuzz\n";
 else if((i % 3) ==0)
-std::cout << i << "Fizz\n";
+std::cout << i << " Fizz\n";
 else if((i % 5) ==0)
-std::cout << i << "Buzz\n";
+std::cout << i << " Buzz\n";
 else
 std::cout << i << "\n";
 }
