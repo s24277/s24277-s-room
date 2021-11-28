@@ -1,4 +1,4 @@
-/*
+/*a
  * A reverse-polish notation calculator.
  */
 
@@ -11,6 +11,7 @@
 #include <stdexcept>
 #include <string>
 #include <vector>
+#include <cmath>
 
 static auto pop_top(std::stack<double> &stack) -> double {
   if (stack.empty()) {
@@ -39,6 +40,61 @@ auto Addition::evaluate(stack_type &stack) const -> void {
   auto const b = pop_top(stack);
   auto const a = pop_top(stack);
   stack.push(a + b);
+}
+auto Multiplying::evaluate(stack_type &stack) const -> void {
+  if (stack.size() < 2) {
+    throw std::logic_error{"not enough operands for *"};
+  }
+  auto const b = pop_top(stack);
+  auto const a = pop_top(stack);
+  stack.push(a * b);
+}
+auto Dividing::evaluate(stack_type &stack) const -> void {
+  if (stack.size() < 2) {
+    throw std::logic_error{"not enough operands for /"};
+  }
+  auto const b = pop_top(stack);
+  auto const a = pop_top(stack);
+  stack.push(a / b);
+}
+auto Dividing_Absolute::evaluate(stack_type &stack) const -> void {
+  if (stack.size() < 2) {
+    throw std::logic_error{"not enough operands for //"};
+  }
+  auto const b = pop_top(stack);
+  auto const a = pop_top(stack);
+  stack.push(std::round(a / b));
+}
+
+auto Modulo::evaluate(stack_type &stack) const -> void {
+  if (stack.size() < 2) {
+    throw std::logic_error{"not enough operands for %"};
+  }
+  auto const b = pop_top(stack);
+  auto const a = pop_top(stack);
+  stack.push((int)a % (int)b);
+}
+auto Power::evaluate(stack_type &stack) const -> void {
+  if (stack.size() < 2) {
+    throw std::logic_error{"not enough operands for **"};
+  }
+  auto const b = pop_top(stack);
+  auto const a = pop_top(stack);
+  stack.push(std::pow(a, b));
+}
+auto Sqrt::evaluate(stack_type &stack) const -> void {
+  if (stack.size() < 2) {
+    throw std::logic_error{"not enough operands for sqrt"};
+  }
+  auto const a = pop_top(stack);
+  stack.push(std::sqrt(a));
+}
+auto Add2::evaluate(stack_type &stack) const -> void {
+  if (stack.size() < 2) {
+    throw std::logic_error{"not enough operands for add2"};
+  }
+  auto const a = pop_top(stack);
+  stack.push(a + 2);
 }
 
 Calculator::Calculator(stack_type s) : stack{std::move(s)} {}
@@ -75,13 +131,34 @@ auto main(int argc, char *argv[]) -> int {
   for (auto const &each : make_args(argc, argv)) {
     try {
       using student::rpn_calculator::Addition;
-      using student::rpn_calculator::Literal;
-      using student::rpn_calculator::Print;
+	using student::rpn_calculator::Multiplying;
+	using student::rpn_calculator::Dividing;
+	using student::rpn_calculator::Dividing_Absolute;
+	using student::rpn_calculator::Modulo;
+	using student::rpn_calculator::Power;
+	using student::rpn_calculator::Sqrt;
+	using student::rpn_calculator::Add2;
+	using student::rpn_calculator::Literal;
+	using student::rpn_calculator::Print;
 
-      if (each == "p") {
+	if (each == "p") {
         calculator.push(std::make_unique<Print>());
       } else if (each == "+") {
         calculator.push(std::make_unique<Addition>());
+      } else if (each == "*") {
+        calculator.push(std::make_unique<Multiplying>());
+      } else if (each == "/") {
+        calculator.push(std::make_unique<Dividing>());
+      } else if (each == "//") {
+        calculator.push(std::make_unique<Dividing_Absolute>());
+      } else if (each == "%") {
+        calculator.push(std::make_unique<Modulo>());
+      } else if (each == "**") {
+        calculator.push(std::make_unique<Power>());
+      } else if (each == "sqrt") {
+        calculator.push(std::make_unique<Sqrt>());
+      } else if (each == "add2") {
+        calculator.push(std::make_unique<Add2>());
       } else {
         calculator.push(std::make_unique<Literal>(std::stod(each)));
       }
@@ -98,3 +175,4 @@ auto main(int argc, char *argv[]) -> int {
 
   return 0;
 }
+

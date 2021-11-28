@@ -30,6 +30,42 @@ struct Addition : public Element {
   auto evaluate(stack_type &) const -> void override;
 };
 
+struct Multiplying : public Element {
+  auto evaluate(stack_type &) const -> void override;
+};
+
+struct Dividing : public Element {
+  auto evaluate(stack_type &) const -> void override;
+};
+
+struct Dividing_Absolute : public Element {
+  auto evaluate(stack_type &) const -> void override;
+};
+
+struct Modulo : public Element {
+  auto evaluate(stack_type &) const -> void override;
+};
+
+struct Power : public Element {
+  auto evaluate(stack_type &) const -> void override;
+};
+
+struct Sqrt : public Element {
+  auto evaluate(stack_type &) const -> void override;
+};
+
+struct Add2 : public Element {
+  auto evaluate(stack_type &) const -> void override;
+};
+
+
+
+
+
+
+
+
+
 struct Calculator {
   stack_type stack;
   std::queue<std::unique_ptr<Element>> ops;

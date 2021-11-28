@@ -1,0 +1,59 @@
+124  cd ~
+  125  clear
+  126  cd /
+  127  echo "zadanie 1"
+  128  cd ~
+  129  echo "zadanie 2"
+  130  mkdir "ukos 2021"
+  131  cd ukos\ 2021/
+  132  mkdir "s24277"
+  133  mkdir "cw 2"
+  134  cd cw\ 2/
+  135  touch "working_file"
+  136  cd ..
+  137  cd s24277/
+  138  mkdir "linux"
+  139  cd linux/
+  140  touch "jest super!"
+  141  echo "zadanie 3"
+  142  ls -a
+  143  echo "zadanie 4"
+  144  cd ..
+  145  cd cw\ 2/
+  146  echo "zadanie 5"
+  147  cd .
+  148  cd ..
+  149  cd s24277/
+  150  mkdir "linux2"
+  151  cp ./linux/jest\ super\! ./linux2/
+  152  echo "zadanie 6"
+  153  cd ..
+  154  cp s24277/*i?u* cw\ 2/
+  155  cp -r s24277/*i?u* cw\ 2/
+  156  echo "zadanie 7"
+  157  cd cw\ 2/
+  158  mv working_file 24277/linux
+  159  mv working_file ../s24277/linux
+  160  echo "zadanie 8"
+  161  cd ..
+  162  rm 24277/linux/working_file
+  163  rm s24277/linux/working_file 
+  164  echo "zadanie 9"
+  165  rm -r s24277/linux
+  166  echo "zadanie 10"
+  167  history > history.txt   
+  237  chmod g + w ukos\ 2021/cw\ 2/linux2/jest\ super\! 
+  238  chmod --help
+  239  chmod g+w ukos\ 2021/cw\ 2/linux2/jest\ super\! 
+  240  cd ukos\ 2021/cw\ 2/linux2
+  241  ls -l
+  242  echo "zadanie 11"
+  243  cd ../../..
+  244  chmod a-rwx ukos\ 2021
+  245  cd ukos\ 2021/
+  246  ls -l
+  247  echo "zadanie 12"
+  248  rm -r ukos\ 2021/
+  249  echo "zadanie 13"
+  250  history>history.txt
+  
