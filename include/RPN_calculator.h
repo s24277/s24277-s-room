@@ -58,14 +58,6 @@ struct Add2 : public Element {
   auto evaluate(stack_type &) const -> void override;
 };
 
-
-
-
-
-
-
-
-
 struct Calculator {
   stack_type stack;
   std::queue<std::unique_ptr<Element>> ops;

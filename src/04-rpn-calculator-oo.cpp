@@ -5,13 +5,13 @@
 #include <RPN_calculator.h>
 
 #include <algorithm>
+#include <cmath>
 #include <iostream>
 #include <iterator>
 #include <stack>
 #include <stdexcept>
 #include <string>
 #include <vector>
-#include <cmath>
 
 static auto pop_top(std::stack<double> &stack) -> double {
   if (stack.empty()) {
@@ -130,18 +130,18 @@ auto main(int argc, char *argv[]) -> int {
 
   for (auto const &each : make_args(argc, argv)) {
     try {
+      using student::rpn_calculator::Add2;
       using student::rpn_calculator::Addition;
-	using student::rpn_calculator::Multiplying;
-	using student::rpn_calculator::Dividing;
-	using student::rpn_calculator::Dividing_Absolute;
-	using student::rpn_calculator::Modulo;
-	using student::rpn_calculator::Power;
-	using student::rpn_calculator::Sqrt;
-	using student::rpn_calculator::Add2;
-	using student::rpn_calculator::Literal;
-	using student::rpn_calculator::Print;
+      using student::rpn_calculator::Dividing;
+      using student::rpn_calculator::Dividing_Absolute;
+      using student::rpn_calculator::Literal;
+      using student::rpn_calculator::Modulo;
+      using student::rpn_calculator::Multiplying;
+      using student::rpn_calculator::Power;
+      using student::rpn_calculator::Print;
+      using student::rpn_calculator::Sqrt;
 
-	if (each == "p") {
+      if (each == "p") {
         calculator.push(std::make_unique<Print>());
       } else if (each == "+") {
         calculator.push(std::make_unique<Addition>());
@@ -175,4 +175,3 @@ auto main(int argc, char *argv[]) -> int {
 
   return 0;
 }
-
