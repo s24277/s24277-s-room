@@ -1,0 +1,194 @@
+#include <iostream>
+#include <cstring>
+#include <algorithm>
+#include <sstream>
+
+
+
+bool is_divisible(int a, int b) {
+    if ( a % b == 0 ) {
+        return true;
+    }
+    else{
+        return false;
+    }
+
+}
+
+bool is_even(int x) {
+    if (is_divisible(x,2) ){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+auto box_print()->std::string {
+    std::string slowo1,slowo2,slowo3,slowo4,slowo5;
+
+    std::cout << "zadanie 10: wypisz 5 slow (max 5 liter) \n";
+    std::cin >> slowo1 >> slowo2 >> slowo3 >> slowo4 >> slowo5 ;
+    std::string jimmy [5] = {slowo1,slowo2,slowo3,slowo4,slowo5};
+    if (slowo1.length() > 5 || slowo2.length() > 5 || slowo3.length() > 5 || slowo4.length() > 5 || slowo5.length() > 5) {
+        return 0;
+    }
+    std::string s1,s2,s3,s4,s5;
+std::string jimmy2 [5] = {s1,s2,s3,s4,s5};
+    for(int i = 0;i < 5; i++){
+if(jimmy[i].length() == 5){
+jimmy2[i] = jimmy[i];
+}
+else if(jimmy[i].length() == 4){
+    jimmy2[i] = jimmy[i] + " ";
+}
+else if(jimmy[i].length() == 3){
+    jimmy2[i] = jimmy[i] + "  ";
+}
+else if(jimmy[i].length() == 2){
+    jimmy2[i] = jimmy[i] + "   ";
+}
+else if(jimmy[i].length() == 1){
+    jimmy2[i] = jimmy[i] + "    ";
+}
+else{
+    jimmy2[i] = "     ";
+}
+
+    }
+std::string ramka1,ramka2,ramka3,ramka4,ramka5;
+ramka1 = "* " + jimmy2[0] + " *";
+ramka2 = "* " + jimmy2[1] + " *";
+ramka3 = "* " + jimmy2[2] + " *";
+ramka4 = "* " + jimmy2[3] + " *";
+ramka5 = "* " + jimmy2[4] + " *";
+
+std::cout <<"\n"<< "*********" <<"\n"<< ramka1 <<"\n"<< ramka2 <<"\n"<< ramka3 <<"\n"<< ramka4 <<"\n"<< ramka5 << "\n"<<"*********"<<"\n";
+}
+
+auto imie_dluzsze_krotsze(){
+    std::string imie1,imie2;
+    std::cout <<"\n"<< "podaj dwa imiona" << "\n";
+    std::cin >> imie1 >> imie2;
+    if (imie1.length() > imie2.length()){
+        std::cout << "Pierwsze imie jest dluzsze od drugiego!"<< "\n";
+    }
+    else if(imie1.length() < imie2.length()){
+        std::cout << "Pierwsze imie jest krotsze od drugiego..."<<"\n";
+    }
+    else{
+        std::cout<< "Oba imiona maja ta sama ilosc liter"<<"\n";
+    }
+}
+
+auto imie_plec(){
+    std::string imie1,imie2,imie3,imie4,imie5;
+std::cout << "Podaj 5 imion"<<"\n";
+std::cin >> imie1 >> imie2 >> imie3 >> imie4 >> imie5;
+std::string jimmy [5] {imie1,imie2,imie3,imie4,imie5};
+int z,m,s;
+z = 0;
+m = 0;
+std::string ostatnia,a;
+a = "a";
+for(int i = 0;i < 5;i++){
+    ostatnia = jimmy[i].back();
+    s = ostatnia.compare(a);
+    if(s == 0){
+        z++;
+    }
+    else{
+        m++;
+    }
+}
+std::cout << "wypisane zostalo " << z << " kobiet oraz " << m << " mezczyzn."<< "\n";
+}
+
+auto count_chars(){
+std::string slowo;
+char litera,a;
+int n,c;
+c = 0;
+std::cout << "Wpisz slowo oraz litere" <<"\n";
+std::cin >> slowo >> litera;
+n = slowo.length();
+char tablica [n + 1];
+strcpy(tablica,slowo.c_str());
+for (int i = 0;i < n;i++){
+a = tablica[i];
+if(a == litera){
+  c++;
+}
+
+}
+std::cout << "litera powtarza sie " << c << " razy" << "\n";
+}
+
+char n_string(){
+    std::string wyraz;
+    char f;
+    int n,l,t,o;
+    t = 1;
+    std::cout << "Wpisz wyraz oraz liczbe"<<"\n";
+std::cin >> wyraz >> n;
+o = n;
+l = wyraz.length() ;
+char litery_wyrazu[l + 1];
+strcpy(litery_wyrazu,wyraz.c_str());
+if (n>l){
+    std::cout << "liczba nie moze byc wieksza niz ilosc liter wyrazu" << "\n";
+}
+else{
+    while(o<l){
+        o = n*t;
+        f = litery_wyrazu[o-1];
+        std::cout << f ;
+t++;
+    }
+    std::cout << "\n";
+}
+
+}
+
+bool is_palindrome(){
+std::string palindrom,rpalindrom;
+int e,f;
+std::cout << "Wpisz slowo"<<"\n";
+std::cin >> palindrom;
+e = palindrom.length();
+char palindrom_t [e+1];
+char rpalindrom_t [e+1];
+strcpy(palindrom_t,palindrom.c_str());
+for (int i = e ; i  > 0 ; i-- ){
+    rpalindrom_t [i] = rpalindrom [e-i];
+
+}
+f = palindrom.compare(rpalindrom);
+if (f == 0) {
+    return true;
+}
+else{
+    return false;
+}
+
+}
+
+int main() {
+
+    std::cout << is_even(5) << "\n" << is_divisible(6,3) << "\n"; // zadanie 5 i 6
+    std::string imie;  // zadanie 2
+    double waga;
+    int wzrost;
+    imie = "Karol";
+    waga = 70;
+    wzrost = 172;
+    std::cout << "Imie:" << imie << "\n" << std::endl << "Waga:" << waga << "\n" << std::endl << "Wzrost:" << wzrost << "\n" << std::endl;
+    imie_dluzsze_krotsze(); //zadanie 3
+    imie_plec(); //zadanie 4
+    count_chars(); //zadanie 7
+    n_string(); //zadanie 8
+    is_palindrome(); //zadanie 9
+    std::cout << is_palindrome<< "\n";
+    box_print(); //zadanie 10
+    return 0;
+}
