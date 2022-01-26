@@ -2,29 +2,31 @@
 #include <fstream>
 #include <cstdlib>
 #include <fstream>
+#include <ostream>
 #include <vector>
 using namespace std;
 
-bool is_number(std::string);
+bool is_number(string);
 void operacje();
 void kursy_walut();
 void portfel();
 void kalkulator();
 
 int main() {
+    cout << "Witaj, co chcesz zrobic?" << "\n";
     while(true) {
-        cout << "Witaj, co chcesz zrobic?" << "\n";
-        cout << "1. Sprawdz kursy kruptowalut" << "\n";
+        cout << "\n1. Sprawdz kursy kruptowalut" << "\n";
         cout << "2. Zamienic walute na inna" << "\n";
         cout << "3. Wykonac operacje na koncie" << "\n";
         cout << "4. Wyjsc" << "\n";
-        std::string m;
+        cout << "\n\n>";
+        string m;
         cin >> m ;
         if(!is_number(m)) {
             cout << "\nNieprawidlowy wybor\n\n";
             continue;
         }
-        switch (std::stoi(m)) {
+        switch (stoi(m)) {
             case 1 :
                 kursy_walut();
                 break;
@@ -44,9 +46,9 @@ int main() {
     return 0;
 }
 
-bool is_number(std::string s) {
+bool is_number(string s) {
     for(auto const &el : s) {
-        if(!std::isdigit(el))
+        if(!isdigit(el))
             return false;
     }
     return true;
@@ -56,47 +58,45 @@ void kalkulator () {
     int u1,u2;
     float k1,k2,s;
     string sk1,sk2,nk1,nk2;
-    cout << "Wybierz walute do porownania z inna:" << "\n";
-    cout << "0. BTC\n" << "1. ETH\n" << "2. USDT\n" << "3. BNB\n" << "4. USDC\n" << "5. ADA\n" << "6. XRP\n";
-    cout << "7. SOL\n" << "8. LUNA\n" << "9. DOT\n" << "10. DOGE\n" << "11. AVAX\n" << "12. BUSD\n"<<"13. SHIB\n" <<"14. UST\n"  ;
+    cout << "Wybierz dwie waluty do porownania: ";
+    fstream nazwy("../nazwy.csv", ios::in);
+    string tmp;
+    vector<string> lines;
+    while(getline(nazwy, tmp)) {
+        lines.push_back(tmp);
+    }
+    for(int i = 0; i < lines.size(); ++i) {
+        cout << i << ". " << lines.at(i) << "\n";
+    }
+    nazwy.close();
 
-    std::fstream kalkulator("../kalkulator.csv", std::ios::in);
-    std::string lk; // linia kalkulator
-    std::vector<std::string> contentk;
-    while(std::getline(kalkulator, lk)) {
+    fstream kalkulator("../kalkulator.csv", ios::in);
+    string lk; // linia kalkulator
+    vector<string> contentk;
+    while(getline(kalkulator, lk)) {
         contentk.push_back(lk);
     }
-    cin >> u1 >> u2;
-    if(u1>14 || u1 <0){
-        cout << "Zla wartosc" << "\n";
+    kalkulator.close();
+    string s1, s2;
+    cin >> s1 >> s2;
+    if(!is_number(s1) || !is_number(s2)) {
+        cout << "Nieprawidlowe dane\n";
         return;
     }
-    if(u2>14 || u2 <0 || u1 == u2){
-        cout << "Zla wartosc" << "\n";
+    u1 = stoi(s1);
+    u2 = stoi(s2);
+    string n1 = lines.at(u1);
+    string n2 = lines.at(u2);
+    if(u1>14 || u1 < 0 || u1 == u2){
+        cout << "Nieprawidlowe dane\n";
         return;
     }
-    kalkulator.close();\
 
-    // linijkę 10 wywołujemy pisząc 9
-    sk1 = contentk[u1];
-    sk2 = contentk[u2];
-    k1= std::stof(sk1);
-    k2= std::stof(sk2);
-    cout << k1 << "\n" << k2 << "\n";
+    k1= stof(contentk.at(u1));
+    k2= stof(contentk.at(u2));
 
-    std::fstream nazwy("../nazwy.csv", std::ios::in);
-    std::string nk; // linia kalkulator
-    std::vector<std::string> contentn;
-    while(std::getline(nazwy, nk)) {
-        contentn.push_back(nk);
-    }
-    nazwy.close();\
-     nk1 = contentn[u1];
-    nk2 = contentn[u2];
-    cout << nk1 << "\n" << nk2 << "\n";
     s = k1/k2;
-    cout << "Za 1 " << nk1 << " mozna miec " << s << " " <<nk2 << "\n";
-    return;
+    cout << n1 << " jest warte " << s << n2 << endl;
 }
 
 void operacje () {
@@ -117,7 +117,7 @@ void operacje () {
 
     cin >> m_o >> wartosc ;
     getline(inFile, bo);
-    zo = std::stoi(bo);
+    zo = stoi(bo);
     inFile.close();
     outdata.open("../portfel.csv");
     if (!outdata) {
@@ -147,11 +147,11 @@ void kursy_walut() {
 
     inFile.open("../kursy.csv");
     if (!inFile) {
-        cout << "Unable to open file";
+        cout << "Unable to open file\n";
         exit(1); // terminate with error
     }
     while ( getline (inFile,dane) ) {
-        std::cout << dane << '\n';
+        cout << dane << '\n';
     }
     inFile.close();
     cout << "\n";
@@ -173,7 +173,7 @@ void portfel() {
                 exit(1); // terminate with error
             }
             getline(inFile, balance);
-            zp = std::stoi(balance);
+            zp = stoi(balance);
             cout << "Twoj stan konta to: " << zp << "$" << "\n";
             cout << "\n";
             inFile.close();
